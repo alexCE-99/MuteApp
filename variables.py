@@ -1,8 +1,9 @@
-muteKey = "p"
+muteKey = "["
 exitKey = "escape"
-unmuteKey = "o"
+unmuteKey = "]"
 
 
+# functions to modify variables called from ui
 def modify_MuteKey(newMute):
     global muteKey
     muteKey = newMute

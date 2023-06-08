@@ -1,16 +1,14 @@
+# import dependencies
 import tkinter as tk
 import variables
 import customtkinter
 
 
 def create_ui():
-    customtkinter.set_appearance_mode(
-        "dark"
-    )  # Modes: "System" (standard), "Dark", "Light"
-    customtkinter.set_default_color_theme(
-        "blue"
-    )  # Themes: "blue" (standard), "green", "dark-blue"
+    customtkinter.set_appearance_mode("dark")
+    customtkinter.set_default_color_theme("blue")
 
+    global app
     app = customtkinter.CTk()
     app.geometry("800x400")
     app.title("Mute Current Application")
@@ -19,6 +17,7 @@ def create_ui():
     frame_1 = customtkinter.CTkFrame(master=app)
     frame_1.pack(pady=20, padx=60, fill="both", expand=True)
 
+    # using tkinter's grid geometry system instead of pack
     frame_1.columnconfigure(0, weight=1, pad=10)
     frame_1.columnconfigure(1, weight=1)
     frame_1.columnconfigure(2, weight=1)
@@ -28,12 +27,12 @@ def create_ui():
     frame_1.rowconfigure(2, weight=1, pad=10)
     frame_1.rowconfigure(3, weight=1)
 
-    label_1 = customtkinter.CTkLabel(text="Mute Current Application", master=app)
-    label_1.pack()
+    label_1 = customtkinter.CTkLabel(text="Mute Current Application", master=frame_1)
+    label_1.grid(row=0, column=1)
 
     global muteTextbox
     muteTextbox = customtkinter.CTkEntry(
-        height=10, width=50, master=frame_1, placeholder_text=variables.muteKey
+        height=10, width=80, master=frame_1, placeholder_text=variables.muteKey
     )
     muteTextbox.grid(row=1, column=0, sticky="s")
     muteButton = customtkinter.CTkButton(
@@ -43,7 +42,7 @@ def create_ui():
 
     global unmuteTextbox
     unmuteTextbox = customtkinter.CTkEntry(
-        height=10, width=50, master=frame_1, placeholder_text=variables.unmuteKey
+        height=10, width=80, master=frame_1, placeholder_text=variables.unmuteKey
     )
     unmuteTextbox.grid(row=1, column=1, sticky="s")
     UnmuteButton = customtkinter.CTkButton(
@@ -53,7 +52,7 @@ def create_ui():
 
     global exitTextbox
     exitTextbox = customtkinter.CTkEntry(
-        height=10, width=50, master=frame_1, placeholder_text=variables.exitKey
+        height=10, width=80, master=frame_1, placeholder_text=variables.exitKey
     )
     exitTextbox.grid(row=1, column=2, sticky="s")
     exitButton = customtkinter.CTkButton(
@@ -61,7 +60,16 @@ def create_ui():
     )
     exitButton.grid(row=2, column=2, sticky="n", pady=10)
 
+    StartScriptButton = customtkinter.CTkButton(
+        text="Start Script", master=frame_1, command=StartScript
+    )
+    StartScriptButton.grid(row=3, column=1, pady=10)
+
     app.mainloop()
+
+
+def StartScript():
+    app.destroy()
 
 
 def SetMute():
