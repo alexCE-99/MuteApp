@@ -12,6 +12,13 @@ import win32process, win32gui
 import keyboard
 import time
 import myUI
+from winotify import Notification, audio
+import time
+
+toast = Notification(
+    app_id="MuteApp", title="MuteApp", msg="MuteApp has stopped!", duration="short"
+)
+toast.set_audio(audio.Default, loop=False)
 
 
 # gets the process name and PID, checking for invalid PID that could crash script
@@ -57,4 +64,5 @@ if running:
                         volume.SetMute(0, None)
 
             if keyboard.is_pressed(exitKey):
+                toast.show()
                 break

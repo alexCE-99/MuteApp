@@ -71,6 +71,7 @@ def create_ui():
 
 
 def StartScript():
+    variables.running = True
     app.destroy()
 
 
