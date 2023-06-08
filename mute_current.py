@@ -38,22 +38,23 @@ myUI.create_ui()
 from variables import *
 
 # main function to monitor process' and control volume
-while True:
-    process_name = get_process_name()
-    if process_name is not None:
-        devices = AudioUtilities.GetSpeakers()
-        interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-        volume = cast(interface, POINTER(IAudioEndpointVolume))
-        sessions = AudioUtilities.GetAllSessions()
+if running:
+    while True:
+        process_name = get_process_name()
+        if process_name is not None:
+            devices = AudioUtilities.GetSpeakers()
+            interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+            volume = cast(interface, POINTER(IAudioEndpointVolume))
+            sessions = AudioUtilities.GetAllSessions()
 
-        for session in sessions:
-            volume = session._ctl.QueryInterface(ISimpleAudioVolume)
-            if session.Process and session.Process.name() == process_name:
-                if keyboard.is_pressed(muteKey):
-                    volume.SetMute(1, None)
+            for session in sessions:
+                volume = session._ctl.QueryInterface(ISimpleAudioVolume)
+                if session.Process and session.Process.name() == process_name:
+                    if keyboard.is_pressed(muteKey):
+                        volume.SetMute(1, None)
 
-                if keyboard.is_pressed(unmuteKey):
-                    volume.SetMute(0, None)
+                    if keyboard.is_pressed(unmuteKey):
+                        volume.SetMute(0, None)
 
-        if keyboard.is_pressed(exitKey):
-            break
+            if keyboard.is_pressed(exitKey):
+                break

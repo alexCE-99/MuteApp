@@ -1,6 +1,7 @@
 muteKey = "["
 exitKey = "escape"
 unmuteKey = "]"
+running = False
 
 
 # functions to modify variables called from ui

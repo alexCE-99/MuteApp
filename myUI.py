@@ -65,10 +65,17 @@ def create_ui():
     )
     StartScriptButton.grid(row=3, column=1, pady=10)
 
+    app.protocol("WM_DELETE_WINDOW", on_closing)
+
     app.mainloop()
 
 
 def StartScript():
+    app.destroy()
+
+
+def on_closing():
+    variables.running = False
     app.destroy()
 
 
