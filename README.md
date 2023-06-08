@@ -1,6 +1,6 @@
 # **Mute App**
 
-This is a simple app to mute and unmute your currently selected window at the click of a button
+This is a simple exe to mute and unmute your currently selected window at the click of a button
 <br>
 
 # Installation
@@ -30,3 +30,5 @@ For example:
 - Shift + F1
 
 Note that in the current version these settings will reset upon a restart.
+
+Only works on Windows
